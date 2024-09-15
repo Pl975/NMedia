@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">NMedia</string>
+    <string name="nmedia">Nmedia</string>
+    <string name="description_post_author_avatar" translatable="false">Post author avatar</string>
+    <string name="description_post_menu" translatable="false">Post menu</string>
+    <string name="description_likes" translatable="false">Like</string>
+    <string name="description_shares" translatable="false">Share</string>
+</resources>
