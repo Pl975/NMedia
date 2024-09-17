@@ -7,9 +7,11 @@ import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.dto.PostService
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val post = Post(
@@ -74,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 post.visibilityCount++
                 visibility.text = PostService.ConvertCountToShortString(post.visibilityCount)
             }
-
         }
+
     }
 }
