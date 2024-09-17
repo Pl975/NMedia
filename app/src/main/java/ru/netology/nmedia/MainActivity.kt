@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.dto.Post
@@ -21,6 +22,22 @@ class MainActivity : AppCompatActivity() {
             visibilityCount = 700_000,
             likedByMe = false
         )
+
+        binding.root.setOnClickListener {
+            // Лог для обработчика на binding.root
+            Log.d("User", "Clicked on root view")
+        }
+
+        binding.likeCount.setOnClickListener {
+            // Лог для обработчика на like count
+            Log.d("User", "Clicked on like count")
+        }
+
+        binding.avatar.setOnClickListener {
+            // Лог для обработчика на avatar
+            Log.d("User", "Clicked on avatar")
+        }
+
         with(binding) {
             author.text = post.author
             content.text = post.content
@@ -35,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             visibility.text = PostService.ConvertCountToShortString(post.visibilityCount)
 
             ivLikes.setOnClickListener {
+                Log.d("User", "Clicked on like button")
                 post.likedByMe = !post.likedByMe
                 ivLikes.setImageResource(
                     if (post.likedByMe) {
