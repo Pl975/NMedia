@@ -88,7 +88,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun likeById(id: Long) {
         posts = posts.map {
-//            if (it.id != id) it else it.copy(likedByMe = !it.likedByMe)
             if (it.id != id) it else {
                 if (!it.likedByMe) it.copy(likedByMe = !it.likedByMe, likesCount = it.likesCount + 1)
                 else it.copy(likedByMe = !it.likedByMe, likesCount = it.likesCount - 1)
@@ -111,7 +110,6 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun save(post: Post) {
         posts = if (post.id == 0L) {
-//        listOf(post.copy(id = nextId++)) + posts
             listOf(post.copy(id = nextId++, published = "Now", author = "Netology")) + posts
             } else {
                 posts.map { if (it.id != post.id) it else it.copy(content = post.content) }

@@ -74,14 +74,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.cancelingEdit.setOnClickListener {
+            viewModel.cancelChangeContent()
             binding.editGroup.visibility = View.GONE
             binding.editedMessage.text = ""
             binding.edit.setText("")
             binding.edit.clearFocus()
             AndroidUtils.hideKeyboard(it)
+
         }
     }
-}
+    }
+
 
 
 
