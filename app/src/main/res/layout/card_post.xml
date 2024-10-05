@@ -5,16 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/margin"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.MainActivity"
+    tools:ignore="ExtraText">
 
     <ImageView
         android:id="@+id/avatar"
         android:layout_width="@dimen/avatar_size"
         android:layout_height="@dimen/avatar_size"
         android:contentDescription="@string/description_post_author_avatar"
-
         android:src="@drawable/ic_netology_48dp"
-
         app:layout_constraintBottom_toTopOf="@id/barrierHeader"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,16 +41,16 @@
         app:layout_constraintTop_toBottomOf="@id/author"
         tools:text="@sample/posts.json/data/published" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/menu"
+        style="@style/Widget.AppThem.ShareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:contentDescription="@string/description_post_menu"
-        android:src="@drawable/ic_more_vert_24"
+        app:icon="@drawable/ic_more_vert_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrierHeader"
@@ -75,69 +74,50 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="content" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/ivLikes"
+        style="@style/Widget.AppThem.LikeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
         android:background="@android:color/transparent"
+        android:checkable="true"
+        android:text="123"
         android:contentDescription="@string/description_likes"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:icon="@drawable/ic_like_24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierContent" />
 
-    <TextView
-        android:id="@+id/likeCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/ivLikes"
-        app:layout_constraintStart_toEndOf="@id/ivLikes"
-        app:layout_constraintTop_toTopOf="@id/ivLikes"
-        tools:text="@sample/posts.json/data/likes" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/ivShares"
+        style="@style/Widget.AppThem.ShareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="@dimen/margin"
         android:background="@android:color/transparent"
+        android:checkable="true"
+        android:text="123"
         android:contentDescription="@string/description_shares"
-        android:src="@drawable/ic_baseline_share_24"
+        app:icon="@drawable/ic_baseline_share_24"
         app:layout_constraintStart_toEndOf="@id/ivLikes"
         app:layout_constraintTop_toBottomOf="@id/barrierContent" />
 
-    <TextView
-        android:id="@+id/shareCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/ivLikes"
-        app:layout_constraintStart_toEndOf="@id/ivShares"
-        app:layout_constraintTop_toTopOf="@id/ivLikes"
-        tools:text="@sample/posts.json/data/shares" />
 
-    <ImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/ivVisibility"
+        style="@style/Widget.AppThem.ShareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin"
-        android:layout_marginEnd="40dp"
+
         android:background="@android:color/transparent"
+        android:checkable="true"
+        android:text="123"
         android:contentDescription="@string/description_shares"
-        android:src="@drawable/ic_baseline_visibility_24"
+        app:icon="@drawable/ic_baseline_visibility_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/barrierContent" />
 
-    <TextView
-        android:id="@+id/visibilityCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/ivVisibility"
-        app:layout_constraintStart_toEndOf="@id/ivVisibility"
-        app:layout_constraintTop_toTopOf="@id/ivVisibility"
-        tools:text="@sample/posts.json/data/visibility" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
