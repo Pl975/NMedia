@@ -52,18 +52,18 @@ class PostViewHolder(
             author.text = post.author
             published.text = post.published
             content.text = post.content
-            likeCount.text = PostService.ConvertCountToShortString(post.likesCount)
-            shareCount.text = PostService.ConvertCountToShortString(post.shareCount)
-            visibilityCount.text = PostService.ConvertCountToShortString(post.visibilityCount)
-            ivLikes.setImageResource(
-                if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24
-            )
+//            likeCount.text = PostService.ConvertCountToShortString(post.likesCount)
+//            shareCount.text = PostService.ConvertCountToShortString(post.shareCount)
+//            visibilityCount.text = PostService.ConvertCountToShortString(post.visibilityCount)
+            ivLikes.isChecked = post.likedByMe
+            ivLikes.text = PostService.ConvertCountToShortString(post.likesCount)
+            ivShares.isChecked = post.sharedByMe
+            ivShares.text = PostService.ConvertCountToShortString(post.shareCount)
+            ivVisibility.text = PostService.ConvertCountToShortString(post.visibilityCount)
+
             ivLikes.setOnClickListener {
                 onInteractionListener.onLike(post)
             }
-            ivShares.setImageResource(
-                if (post.sharedByMe) R.drawable.ic_baseline_share_active_24 else R.drawable.ic_baseline_share_24
-            )
             ivShares.setOnClickListener {
                 onInteractionListener.onShare(post)
             }
@@ -76,10 +76,12 @@ class PostViewHolder(
                                 onInteractionListener.onRemove(post)
                                 true
                             }
+
                             R.id.edit -> {
                                 onInteractionListener.onEdit(post)
                                 true
                             }
+
                             else -> false
                         }
                     }
