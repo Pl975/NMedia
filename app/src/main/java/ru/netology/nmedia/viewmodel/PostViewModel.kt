@@ -14,6 +14,7 @@ private val empty = Post(
     likedByMe = false,
     sharedByMe = false
 )
+
 class PostViewModel : ViewModel() {
     // упрощённый вариант
     private val repository: PostRepository = PostRepositoryInMemoryImpl()
@@ -23,10 +24,10 @@ class PostViewModel : ViewModel() {
     fun applyChangesAndSave(content: String) {
 
         edited.value?.let {
-            if (content!=it.content){
+            if (content != it.content) {
                 repository.save(it.copy(content = content))
             }
-            edited.value=empty
+            edited.value = empty
         }
     }
 
@@ -38,9 +39,28 @@ class PostViewModel : ViewModel() {
         edited.value = post
     }
 
-
     fun likeById(id: Long) = repository.likeById(id)
     fun shareById(id: Long) = repository.shareById(id)
     fun removeById(id: Long) = repository.removeById(id)
+
+    fun changeContent(content: String) {
+        val text = content.trim()
+        if (edited.value?.content == text) {
+            return
+        }
+        edited.value = edited.value?.copy(content = text)
+    }
+
+    fun save() {
+        edited.value?.let {
+            repository.save(it)
+        }
+        edited.value = empty
+    }
+
+    fun reset(){
+        edited.value = empty
+    }
+
 
 }

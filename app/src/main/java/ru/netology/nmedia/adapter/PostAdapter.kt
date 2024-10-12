@@ -1,6 +1,7 @@
 package ru.netology.nmedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
@@ -11,22 +12,18 @@ import ru.netology.nmedia.databinding.CardPostBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.dto.PostService
 
-//typealias OnLikeListener = (post: Post) -> Unit
-//typealias OnSharedListener = (post: Post) -> Unit
-//typealias OnRemoveListener = (post: Post) -> Unit
 
 interface OnInteractionListener {
     fun onLike(post: Post)
     fun onRemove(post: Post)
     fun onEdit(post: Post)
     fun onShare(post: Post)
+    fun onImageVideo(post: Post)
+    fun onPlayVideo(post: Post)
 }
 
 class PostAdapter(
     private val onInteractionListener: OnInteractionListener
-//    private val onLikeListener: OnLikeListener,
-//    private val onShareListener: OnSharedListener,
-//    private val onRemoveListener: OnRemoveListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -43,23 +40,35 @@ class PostAdapter(
 class PostViewHolder(
     private val binding: CardPostBinding,
     private val onInteractionListener: OnInteractionListener,
-//    private val onLikeListener: OnLikeListener,
-//    private val onSharedListener: OnSharedListener,
-//    private val onRemoveListener: OnRemoveListener
-) : RecyclerView.ViewHolder(binding.root) {
+
+    ) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(post: Post) {
         binding.apply {
             author.text = post.author
             published.text = post.published
             content.text = post.content
-//            likeCount.text = PostService.ConvertCountToShortString(post.likesCount)
-//            shareCount.text = PostService.ConvertCountToShortString(post.shareCount)
-//            visibilityCount.text = PostService.ConvertCountToShortString(post.visibilityCount)
             ivLikes.isChecked = post.likedByMe
             ivLikes.text = PostService.ConvertCountToShortString(post.likesCount)
             ivShares.isChecked = post.sharedByMe
             ivShares.text = PostService.ConvertCountToShortString(post.shareCount)
             ivVisibility.text = PostService.ConvertCountToShortString(post.visibilityCount)
+
+            layoutVideo.visibility = View.GONE
+            if (post.video != null) {
+                layoutVideo.visibility = View.VISIBLE
+                txtName.text = post.video.name
+                txtViewCount.text = post.video.views.toString()
+            }
+
+            playVideo.setOnClickListener {
+                onInteractionListener.onPlayVideo(post)
+            }
+
+            imageVideo.setOnClickListener {
+                onInteractionListener.onImageVideo(post)
+            }
+
 
             ivLikes.setOnClickListener {
                 onInteractionListener.onLike(post)

@@ -67,12 +67,82 @@
         app:layout_constraintTop_toBottomOf="@id/barrierHeader"
         tools:text="@sample/posts.json/data/content" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/content">
+
+        <ImageView
+            android:id="@+id/imageVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_spacing"
+            android:minWidth="@dimen/icon_button_min_size"
+            android:minHeight="@dimen/icon_button_min_size"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/imageVideo"
+            app:srcCompat="@drawable/video" />
+
+        <ImageButton
+            android:id="@+id/playVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/imageVideo"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@+id/imageVideo"
+            app:layout_constraintStart_toStartOf="@+id/imageVideo"
+            app:layout_constraintTop_toTopOf="@+id/imageVideo"
+            android:contentDescription="@string/playVideo"
+            app:srcCompat="@drawable/play_circle_outline_24" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_spacing"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:layout_marginEnd="@dimen/small_spacing"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageVideo"
+            tools:text="Весна - открытый фильм" />
+
+        <TextView
+            android:id="@+id/txtViewCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_spacing"
+            android:text="@string/viewsCount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+        <TextView
+            android:id="@+id/txtViewCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_spacing"
+            android:layout_marginEnd="@dimen/small_spacing"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtViewCountText"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            tools:text="0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrierContent"
+        android:id="@+id/footer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="content" />
+        app:constraint_referenced_ids="layoutVideo" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ivLikes"
@@ -86,7 +156,7 @@
         android:contentDescription="@string/description_likes"
         app:icon="@drawable/ic_like_24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrierContent" />
+        app:layout_constraintTop_toBottomOf="@id/footer" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -101,7 +171,7 @@
         android:contentDescription="@string/description_shares"
         app:icon="@drawable/ic_baseline_share_24"
         app:layout_constraintStart_toEndOf="@id/ivLikes"
-        app:layout_constraintTop_toBottomOf="@id/barrierContent" />
+        app:layout_constraintTop_toBottomOf="@id/footer" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -117,7 +187,7 @@
         android:contentDescription="@string/description_shares"
         app:icon="@drawable/ic_baseline_visibility_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/barrierContent" />
+        app:layout_constraintTop_toBottomOf="@id/footer" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
