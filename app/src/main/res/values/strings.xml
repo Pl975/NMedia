@@ -17,5 +17,13 @@
     <string name="edited" translatable="false">Edit Message</string>
     <string name="description_cancel_edit" translatable="false">Canceling an edit</string>
     <string name="description_save_post" translatable="false">Save post</string>
+    <string name="chooser_share_post" translatable="false">Share post</string>
+    <string name="add_post" translatable="false">Add post</string>
+    <string name="edit_message" translatable="false">Edit Message</string>
+    <string name="pencil" translatable="false">Pencil</string>
+    <string name="edit_cancel" translatable="false">Cancel</string>
+    <string name="viewsCount" translatable="false">"Views: "</string>
+    <string name="playVideo" translatable="false">Play Button</string>
+    <string name="imageVideo" translatable="false">Video Image</string>
 
 </resources>
