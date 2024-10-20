@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/margin"
-    tools:context=".activity.MainActivity"
+    tools:context=".activity.FeedFragment"
     tools:ignore="ExtraText">
 
     <ImageView
