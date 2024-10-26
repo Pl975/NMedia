@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,9 +21,11 @@ class NewPostFragment : Fragment() {
     companion object {
         var Bundle.textArg: String? by StringArg
     }
+
     private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,7 +44,11 @@ class NewPostFragment : Fragment() {
             binding.edit.setText(text)
             binding.edit.focusAndShowKeyboard()
         } else {
-            binding.edit.hint = getString(R.string.post_text)
+            if (viewModel.draft.isNotBlank()) {
+                binding.edit.setText(viewModel.draft)
+            } else {
+                binding.edit.hint = getString(R.string.post_text)
+            }
             binding.editPreview.text = ""
             binding.editGroup.visibility = View.GONE
             binding.edit.focusAndShowKeyboard()
@@ -56,6 +63,12 @@ class NewPostFragment : Fragment() {
             viewModel.reset()
             findNavController().navigateUp()
         }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            viewModel.draft = binding.edit.text.toString()
+            findNavController().navigateUp()
+        }
+
         return binding.root
     }
 }

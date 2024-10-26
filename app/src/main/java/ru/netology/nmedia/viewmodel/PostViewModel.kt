@@ -3,9 +3,11 @@ package ru.netology.nmedia.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
 import ru.netology.nmedia.repository.PostRepositoryFilesImpl
+import ru.netology.nmedia.repository.PostRepositorySQLiteImpl
 
 
 private val empty = Post(
@@ -19,9 +21,13 @@ private val empty = Post(
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     // упрощённый вариант
-    private val repository: PostRepository = PostRepositoryFilesImpl(application)
+//    private val repository: PostRepository = PostRepositoryFilesImpl(application)
+    private val repository: PostRepository = PostRepositorySQLiteImpl(
+        AppDb.getInstance(application).postDao
+    )
     val data = repository.getAll()
     val edited = MutableLiveData(empty)
+    var draft = ""
 
     fun applyChangesAndSave(content: String) {
 
@@ -62,6 +68,7 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 
     fun reset() {
         edited.value = empty
+        draft = ""
     }
 
 
