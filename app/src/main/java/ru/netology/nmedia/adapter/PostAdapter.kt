@@ -30,7 +30,6 @@ class PostAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding, onInteractionListener)
-//        return PostViewHolder(view, onInteractionListener)
 
     }
 
@@ -53,9 +52,8 @@ class PostViewHolder(
             content.text = post.content
             ivLikes.isChecked = post.likedByMe
             ivLikes.text = PostService.ConvertCountToShortString(post.likesCount)
-            ivShares.isChecked = post.sharedByMe
             ivShares.text = PostService.ConvertCountToShortString(post.shareCount)
-            ivVisibility.text = PostService.ConvertCountToShortString(post.visibilityCount)
+            ivVisibility.text = PostService.ConvertCountToShortString(post.views)
 
             layoutVideo.visibility = View.GONE
             if (post.video != null) {

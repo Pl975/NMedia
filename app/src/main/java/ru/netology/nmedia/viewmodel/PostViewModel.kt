@@ -6,8 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.db.AppDb
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.repository.PostRepository
-import ru.netology.nmedia.repository.PostRepositoryFilesImpl
-import ru.netology.nmedia.repository.PostRepositorySQLiteImpl
+import ru.netology.nmedia.repository.PostRepositoryRoomImpl
 
 
 private val empty = Post(
@@ -15,14 +14,13 @@ private val empty = Post(
     author = "",
     content = "",
     published = "",
-    likedByMe = false,
-    sharedByMe = false
+    likedByMe = false
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     // упрощённый вариант
-//    private val repository: PostRepository = PostRepositoryFilesImpl(application)
-    private val repository: PostRepository = PostRepositorySQLiteImpl(
+
+    private val repository: PostRepository = PostRepositoryRoomImpl(
         AppDb.getInstance(application).postDao
     )
     val data = repository.getAll()
@@ -70,6 +68,5 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         edited.value = empty
         draft = ""
     }
-
 
 }

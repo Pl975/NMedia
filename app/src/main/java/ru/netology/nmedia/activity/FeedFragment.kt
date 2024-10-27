@@ -9,10 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.R
 import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
+import ru.netology.nmedia.adapter.PostAdapter
 import ru.netology.nmedia.databinding.FragmentFeedBinding
 import ru.netology.nmedia.dto.Post
 import ru.netology.nmedia.viewmodel.PostViewModel
-import ru.netology.nmedia.adapter.PostAdapter
 
 class FeedFragment : Fragment() {
 
@@ -33,6 +33,7 @@ class FeedFragment : Fragment() {
                     R.id.action_feedFragment_to_newPostFragment,
                     Bundle().apply { textArg = post.content })
             }
+
             override fun onPostOpen(post: Post) {
                 findNavController().navigate(
                     R.id.action_feedFragment_to_onePostFragment,
@@ -60,7 +61,6 @@ class FeedFragment : Fragment() {
         }
 
         return binding.root
-
 
     }
 }
